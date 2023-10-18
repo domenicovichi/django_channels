@@ -18,8 +18,7 @@ class ChatConsumer(WebsocketConsumer):
         print(self.room_name)
 
         c,b = ChatRoom.objects.get_or_create(name = self.room_name)
-        
-        self.accept()
+        self.accept()  
 
     def disconnect(self, close_code):
         # Leave room group
@@ -31,11 +30,11 @@ class ChatConsumer(WebsocketConsumer):
     # Receive message from WebSocket
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
+        print(text_data_json)
         message = text_data_json['message']
         user = self.scope['user']
-
-
-        chat_room, created = ChatRoom.objects.get_or_create(name=self.room_name)
+        
+        chat_room = ChatRoom.objects.get(name=self.room_name)
 
         msg = Message.objects.create(
             content = message,
