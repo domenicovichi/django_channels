@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lista delle Stanze</title>
+  </head>
+  <body>
+    <h1>Lista delle Stanze</h1>
+    <ul>
+      {% for room in chat_rooms %}
+      <li><a href="{% url 'room_messages' room.name %}">{{ room.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
