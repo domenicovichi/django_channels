@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import ChatRoom,Message
 
 def index(request):
     return render(request, 'chat/index.html')
@@ -7,8 +8,6 @@ def room(request, room_name):
     return render(request, 'chat/room.html', {
         'room_name': room_name
     })
-
-from .models import ChatRoom,Message
 
 def room_list(request):
     chat_rooms = ChatRoom.objects.all()
